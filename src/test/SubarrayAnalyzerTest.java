@@ -10,10 +10,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
-public class ISubarrayAnalyzerTest {
+public class SubarrayAnalyzerTest {
 
     // ─────────────── Kadane Tests ───────────────
 
@@ -78,7 +77,7 @@ public class ISubarrayAnalyzerTest {
         assertEquals(6.0, result.getTotal(), 0.001);
     }
     /**
-     * Empty list and target 0.
+     * Empty list input.
      * Expected: return (-1, -1)
      */
     @Test
@@ -89,6 +88,21 @@ public class ISubarrayAnalyzerTest {
 
         assertEquals(-1, result.getStartIndex());
         assertEquals(-1, result.getEndIndex());
+        assertEquals(0.0, result.getTotal(), 0.001);
+    }
+
+    /**
+     * All zeros input.
+     * Expected: entire array is selected with sum = 0.0
+     */
+    @Test
+    public void testKadaneAllZeros() {
+        ISubarrayAnalyzer analyzer = new KadaneAnalyzer();
+        List<Double> input = Arrays.asList(0.0, 0.0, 0.0);
+        SubarrayResult result = analyzer.analyze(input);
+
+        assertEquals(0, result.getStartIndex());
+        assertEquals(0, result.getEndIndex());
         assertEquals(0.0, result.getTotal(), 0.001);
     }
 
